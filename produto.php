@@ -1,66 +1,50 @@
 <?php
 
-class Produto
-{
-	private string $nome;
-	private float $precoUnitario;
-	private int $quantidade;
+class Produto {
+    
 
-	public function __construct(string $nome = '', float $precoUnitario = 0.0, int $quantidade = 0)
-	{
-		$this->nome = $nome;
-		$this->precoUnitario = $precoUnitario;
-		$this->quantidade = $quantidade;
-	}
+    private $nome;
+    private $precoUnitario;
+    private $quantidade;
 
-	public function calcularValorTotal(): float
-	{
-		return $this->precoUnitario * $this->quantidade;
-	}
-
-	public function aplicarDesconto(float $percentual): float
-	{
-		$total = $this->calcularValorTotal();
-		$desconto = $total * ($percentual / 100.0);
-		return $total - $desconto;
-	}
-
-	public function estaEmEstoqueBaixo(): bool
-	{
-		return $this->quantidade < 5;
-	}
-
-	// setters
-	public function setNome(string $nome): void
-	{
-		$this->nome = $nome;
-	}
-
-	public function setPrecoUnitario(float $preco): void
-	{
-		$this->precoUnitario = $preco;
-	}
-
-	public function setQuantidade(int $quantidade): void
-	{
-		$this->quantidade = $quantidade;
-	}
-
-	public function getNome(): string
-	{
-		return $this->nome;
-	}
-
-	public function getPrecoUnitario(): float
-	{
-		return $this->precoUnitario;
-	}
-
-	public function getQuantidade(): int
-	{
-		return $this->quantidade;
-	}
+public function setNome($nome) {
+    $this ->nome = $nome;
 }
 
-?>
+public function getNome() {
+    return $this-> nome;
+}
 
+public function setPrecoUnitario($precoUnitario) {
+    $this-> precoUnitario = $precoUnitario;
+}
+
+public function getPrecoUnitario() {
+    return $this-> precoUnitario;
+}
+
+public function setQuantidade($quantidade) {
+    $this-> quantidade = $quantidade;
+
+}
+public function getquantidade() {
+    return $this-> quantidade;
+
+}
+
+public function calcularvalorTotal() {
+    return $this-> precoUnitario * $this-> quantidade;
+}
+ 
+public function desconto ($percentual) {
+    $desconto = $this-> calcularvalorTotal() * ($percentual / 100);
+    return $this-> calcularvalorTotal() - $desconto;
+}
+public function estoque() {
+    if ($this-> quantidade < 5) {
+        return "Atenção: Estoque baixo!";
+    } else {
+        return "Estoque suficiente.";
+    }
+    }
+}
