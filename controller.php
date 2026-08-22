@@ -1,31 +1,17 @@
 <?php
+
 require_once 'Produto.php';
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-	header('Location: index.html');
-	exit;
-}
-
-$nome = isset($_POST['nome']) ? trim($_POST['nome']) : '';
-$precoUnitario = isset($_POST['precoUnitario']) ? floatval($_POST['precoUnitario']) : 0.0;
-$quantidade = isset($_POST['quantidade']) ? intval($_POST['quantidade']) : 0;
-$descontoPercentual = isset($_POST['descontoPercentual']) ? floatval($_POST['descontoPercentual']) : 0.0;
-
-
 $produto = new Produto();
-$produto->setNome($nome);
-$produto->setPrecoUnitario($precoUnitario);
-$produto->setQuantidade($quantidade);
 
-$valorTotal = $produto->calcularValorTotal();
-$valorComDesconto = $produto->aplicarDesconto($descontoPercentual);
-$estoqueBaixo = $produto->estaEmEstoqueBaixo();
+$produto->setNome($_POST['nome']);
+$produto->setprecoUnitario($_POST['precoUnitario']);
+$produto->setquantidade($_POST['quantidade']);
 
-$nomeProduto = $produto->getNome();
-$precoProduto = $produto->getPrecoUnitario();
-$qtdProduto = $produto->getQuantidade();
+echo "Produto cadastrado com sucesso!<br>";
+echo "Nome: " . $produto->getNome() . "<br>";
+echo "Preço Unitário: " . $produto->getprecoUnitario() . "<br>";
+echo "Quantidade: " . $produto->getquantidade() . "<br>";
+echo "Valor Total: " . $produto->calcularvalorTotal() . "<br>";
 
-include 'resultado.php';
-
-?>
-
+require_once 'resultado.php';
